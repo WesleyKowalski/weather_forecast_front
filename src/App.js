@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { getAllByDisplayValue } from '@testing-library/react';
+import React from 'react';
+import { Component } from 'react/cjs/react.production.min';
+import api from './services/api'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+class App extends Component{
+
+  async componentDidMount(){
+  /*  state = {
+      data : []]
+    }*/
+
+        
+    const response = await api.get('/api/v1/forecastforcity', {
+      params: {
+        city: 'Blumenau'
+      }
+    });
+    console.log(response.data);
+  }
+
+  render(){
+    return(
+      <div>
+        <h1>Listar Artigos</h1>
+      </div>
+    );
+  };
+};
+
 
 export default App;
